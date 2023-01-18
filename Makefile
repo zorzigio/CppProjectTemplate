@@ -33,8 +33,8 @@ format:
 
 .PHONY: build
 build:
-	cmake -H. -B$(BUILD_DIR) -DCMAKE_BUILD_TYPE=Debug
-	cmake --build $(BUILD_DIR) --config Debug $(JOBS)
+	cmake -H. -B$(BUILD_DIR) -DCMAKE_BUILD_TYPE=Release
+	cmake --build $(BUILD_DIR) --config Release --target main $(JOBS)
 
 coverage:
 	cmake -H. -B$(BUILD_DIR) -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On
@@ -44,3 +44,9 @@ coverage:
 docs:
 	cmake -H. -B$(BUILD_DIR) -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DENABLE_DOCS=ON
 	cmake --build $(BUILD_DIR) --config Debug --target docs $(JOBS)
+
+.PHONY: tests
+tests:
+	cmake -H. -B$(BUILD_DIR) -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug"
+	cmake --build $(BUILD_DIR) --config Debug --target unit_tests $(JOBS)
+	./$(BUILD_DIR)/tests/unit_tests
