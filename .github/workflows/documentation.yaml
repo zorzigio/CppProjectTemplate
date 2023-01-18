@@ -11,9 +11,11 @@ jobs:
     name: Build and publish documentation
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-    - name: Install Docs
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
+    - name: Python setup
+      uses: actions/setup-python@v2
+    - name: Install packages for building Docs
       run: |
         make install_doc
     - name: prepare
@@ -22,9 +24,13 @@ jobs:
     - name: configure and build
       run: |
         make docs
-    - name: Deploy to GitHub Pages
-      uses: Cecilapp/GitHub-Pages-deploy@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Deploy to GitHub Pages
+    #   uses: Cecilapp/GitHub-Pages-deploy@v3
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     build_dir: ./docs/html
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        build_dir: ./docs/html
+        folder: docs
