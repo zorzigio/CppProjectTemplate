@@ -28,8 +28,8 @@ option(ENABLE_CPPCHECK "Enable to add cppcheck." OFF)
 option(ENABLE_SANITIZE_ADDR "Enable to sanitize address (Unix only)." OFF)
 option(ENABLE_SANITIZE_UNDEF "Enable to sanitize undefined (Unix only)." OFF)
 
-option(ENABLE_CLANG_FORMAT "Enable to add clang-format." ON)
-option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
+option(ENABLE_CLANG_FORMAT "Enable to add clang-format." OFF)
+option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." OFF)
 
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
