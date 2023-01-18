@@ -4,7 +4,10 @@ on:
   push:
     tags:
       - "*"
-    branches: [ main, master ]
+    branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,13 +27,7 @@ jobs:
     - name: configure and build
       run: |
         make docs
-    # - name: Deploy to GitHub Pages
-    #   uses: Cecilapp/GitHub-Pages-deploy@v3
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     build_dir: ./docs/html
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: docs
+        folder: docs/html
