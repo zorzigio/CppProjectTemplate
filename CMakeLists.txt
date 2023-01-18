@@ -33,6 +33,8 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
+option(ENABLE_DOCS "Enable Docs generation" OFF)
+
 # Project/Library Names
 set(LIBRARY_NAME "lib")
 set(UNIT_TEST_NAME "unit_tests")

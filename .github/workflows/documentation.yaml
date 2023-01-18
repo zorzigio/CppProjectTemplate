@@ -19,12 +19,9 @@ jobs:
     - name: prepare
       run: |
         make clean
-    - name: configure
+    - name: configure and build
       run: |
-        cmake -H. -Bbuild -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug"
-    - name: building
-      run: |
-        cmake --build build --config Debug --target docs -j4
+        make docs
     - name: Deploy to GitHub Pages
       uses: Cecilapp/GitHub-Pages-deploy@v3
       env:
