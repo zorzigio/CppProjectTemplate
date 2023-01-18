@@ -1,12 +1,6 @@
 BUILD_DIR = build
 JOBS = -j4
 
-ifeq '$(findstring ;,$(PATH))' ';'
-  CONAN_FLAGS = -s compiler='Visual Studio' -s compiler.version=16 -s cppstd=17 --build missing
-else
-  CONAN_FLAGS = -s cppstd=17 --build missing
-endif
-
 all: clean
 
 install_min:
@@ -25,16 +19,9 @@ install_doc: install_min
 	sudo apt-get install doxygen graphviz
 	pip install jinja2 Pygments
 
-setup:
-	pip install conan --user
-	conan user
-
 clean:
 	rm -rf $(BUILD_DIR)
 	mkdir $(BUILD_DIR)
-
-prepare_conan: clean
-	cd $(BUILD_DIR) && conan install .. $(CONAN_FLAGS)
 
 lint:
 	cmake -H. -B$(BUILD_DIR) -DENABLE_CLANG_TIDY=ON

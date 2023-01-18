@@ -12,7 +12,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Options
-option(USE_CONAN "Whether to use conan" OFF)
 option(USE_VCPKG "Whether to use vcpkg" OFF)
 
 option(ENABLE_WARNINGS "Enable to add warnings to a target." ON)
@@ -71,15 +70,7 @@ endif()
 
 # EXTERNAL LIBRARIES
 
-if(USE_CONAN)
-    message("==> Using Conan")
-    include(${CMAKE_BINARY_DIR}/conan_paths.cmake)
-    find_package(nlohmann_json)
-    find_package(fmt)
-    find_package(spdlog)
-    find_package(Catch2)
-    find_package(cxxopts)
-elseif(USE_VCPKG)
+if(USE_VCPKG)
     message("==> Using VCPKG")
     include(${CMAKE_SOURCE_DIR}/external/vcpkg/scripts/buildsystems/vcpkg.cmake)
     find_package(nlohmann_json)

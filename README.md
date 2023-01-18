@@ -11,7 +11,6 @@ This is a template for C++ projects. What you get:
 - Use of modern CMake for building and compiling
 - External libraries installed and managed by
   - CMake's [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) OR
-  - [Conan](https://conan.io/) Package Manager OR
   - [VCPKG](https://github.com/microsoft/vcpkg) Package Manager
 - Unit testing using [Catch2](https://github.com/catchorg/Catch2)
 - General purpose libraries: [JSON](https://github.com/nlohmann/json), [spdlog](https://github.com/gabime/spdlog), [cxxopts](https://github.com/jarro2783/cxxopts) and [fmt](https://github.com/fmtlib/fmt)
@@ -50,7 +49,7 @@ Library code goes into [src/](src/), main program code in [app/](app) and tests 
 - CMake 3.16+
 - GNU Makefile
 - Doxygen
-- Conan or VCPKG
+- VCPKG
 - MSVC 2017 (or higher), G++9 (or higher), Clang++9 (or higher)
 - Code Coverage (only on GNU|Clang): lcov, gcovr
 
