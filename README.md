@@ -60,7 +60,7 @@ First, clone this repo and do the preliminary work:
 
 ```shell
 git clone --recursive https://github.com/franneck94/CppProjectTemplate
-make prepare
+make clean
 ```
 
 - App Executable

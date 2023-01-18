@@ -32,7 +32,7 @@ function(add_cmake_format_target)
             COMMAND ${FORMATTING_COMMANDS}
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
     else()
-        message("==> CMAKE_FORMAT NOT FOUND")
+        message(FATAL_ERROR "==> CMAKE_FORMAT NOT FOUND")
     endif()
 endfunction()
 
@@ -42,6 +42,7 @@ function(add_clang_format_target)
     endif()
     find_package(Python3 COMPONENTS Interpreter)
     if(NOT ${Python_FOUND})
+        message(FATAL_ERROR "==> Unable to use Clang Format. Python3 needed")
         return()
     endif()
     file(GLOB_RECURSE CMAKE_FILES_CC "*/*.cc")
@@ -71,7 +72,10 @@ function(add_clang_format_target)
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
             USES_TERMINAL)
     else()
-        message("==> CLANGFORMAT NOT FOUND")
+        message(
+            FATAL_ERROR
+                "==> CLANGFORMAT NOT FOUND. do 'pip install cmakelang' or set 'ENABLE_CLANG_FORMAT=OFF'"
+        )
     endif()
 endfunction()
 

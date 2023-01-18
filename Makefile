@@ -1,10 +1,12 @@
+BUILD_DIR = build
+
 ifeq '$(findstring ;,$(PATH))' ';'
   CONAN_FLAGS = -s compiler='Visual Studio' -s compiler.version=16 -s cppstd=17 --build missing
 else
   CONAN_FLAGS = -s cppstd=17 --build missing
 endif
 
-all: prepare
+all: clean
 
 install_min:
 	sudo apt-get install gcc g++ cmake make doxygen
@@ -26,11 +28,26 @@ setup:
 	pip install conan --user
 	conan user
 
-prepare:
-	rm -rf build
-	mkdir build
+clean:
+	rm -rf $(BUILD_DIR)
+	mkdir $(BUILD_DIR)
 
-prepare_conan:
-	rm -rf build
-	mkdir build
-	cd build && conan install .. $(CONAN_FLAGS)
+prepare_conan: clean
+	cd $(BUILD_DIR) && conan install .. $(CONAN_FLAGS)
+
+lint:
+	cmake -H. -B$(BUILD_DIR) -DENABLE_CLANG_TIDY=ON
+	cmake --build $(BUILD_DIR) --target main_clangtidy -j4
+
+format:
+	cmake -H. -B$(BUILD_DIR)  -DENABLE_CLANG_FORMAT=ON -DENABLE_CMAKE_FORMAT=ON
+	cmake --build $(BUILD_DIR) --target run_clang_format --target run_cmake_format --config Debug -j4
+
+.PHONY: build
+build:
+	cmake -H. -B$(BUILD_DIR) -DCMAKE_BUILD_TYPE=Debug
+	cmake --build $(BUILD_DIR) --config Debug -j4
+
+coverage:
+	cmake -H. -B$(BUILD_DIR) -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On
+	cmake --build $(BUILD_DIR) --config Debug --target coverage -j4

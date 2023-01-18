@@ -16,7 +16,7 @@ jobs:
         make install_tests
     - name: prepare
       run: |
-        make prepare
+        make clean
     - name: configure
       run: |
         cmake -H. -Bbuild -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=On
