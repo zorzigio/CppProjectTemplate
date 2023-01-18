@@ -56,7 +56,7 @@ Library code goes into [src/](src/), main program code in [app/](app) and tests 
 First, clone this repo and do the preliminary work:
 
 ```shell
-git clone --recursive https://github.com/zorzigio/CppTemplate
+git clone --recursive https://github.com/zorzigio/CppProjectTemplate
 make clean
 ```
 
