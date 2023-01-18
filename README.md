@@ -56,7 +56,7 @@ Library code goes into [src/](src/), main program code in [app/](app) and tests 
 First, clone this repo and do the preliminary work:
 
 ```shell
-git clone --recursive https://github.com/zorzigio/CppProjectTemplate
+git clone --recursive https://github.com/zorzigio/CppTemplate
 make clean
 ```
 
@@ -86,3 +86,7 @@ make coverage
 ```
 
 For more info about CMake see [here](./CMakeGuide.md).
+
+## Acknowledgements
+
+This repo is based on [franneck94/CppProjectTemplate](https://github.com/franneck94/CppProjectTemplate)
